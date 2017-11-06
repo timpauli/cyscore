@@ -14,3 +14,7 @@ class Score:
             sco += '\n'
             sco += str(v)
         return sco
+
+    def to_file(self, fname: str):
+        with open(fname, "w") as f:
+            f.write(str(self))

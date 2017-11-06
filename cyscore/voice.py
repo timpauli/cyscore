@@ -1,8 +1,7 @@
+from itertools import accumulate
 from typing import List
 
-from itertools import accumulate
-
-from .note import Note, Rest
+from .note import Note
 
 
 class Voice:
@@ -16,10 +15,9 @@ class Voice:
         return line + str(note)
 
     def __repr__(self) -> str:
-        durs = map(lambda x: x.dur, self.notes)
-        block = self.__line(0, self.notes[0])
-        for n, time in zip(self.notes[1:], accumulate(durs)):
-            if n is not Rest:
-                block += '\n'
-                block += self.__line(time, n)
+        times = accumulate(map(lambda x: x.distance, self.notes))
+        block = self.__line(next(times), self.notes[0])
+        for n, time in zip(self.notes[1:], times):
+            block += '\n'
+            block += self.__line(time, n)
         return block
