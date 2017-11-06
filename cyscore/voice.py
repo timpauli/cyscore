@@ -1,24 +1,25 @@
 from typing import List
 
-import numpy as np
+from itertools import accumulate
 
-from note import Note, Rest
+from .note import Note, Rest
 
 
 class Voice:
     def __init__(self, instr: str, notes: List[Note]) -> None:
-        self instr = instr
+        assert(len(notes) > 0)
+        self.instr = instr
         self.notes = notes
 
-    def __line__(self, time: float, note: Note) -> str:
-        line = "i\t{0}\t{1}\t".format(self.instr, time)
+    def __line(self, time: float, note: Note) -> str:
+        line = "i\t\"{0}\"\t{1}\t".format(self.instr, time)
         return line + str(note)
 
     def __repr__(self) -> str:
         durs = map(lambda x: x.dur, self.notes)
-        block = self.__line__(time, self.notes[0])
-        for n, time in zip(self.notes[1:], np.cumsum(durs)):
+        block = self.__line(0, self.notes[0])
+        for n, time in zip(self.notes[1:], accumulate(durs)):
             if n is not Rest:
                 block += '\n'
-                block += self.__line__(time, n)
+                block += self.__line(time, n)
         return block

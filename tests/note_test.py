@@ -1,15 +1,11 @@
-import unittest
-
-from cyscore.note import Note
+from cyscore_test import CyscoreTest
 
 
-class NoteTest(unittest.TestCase):
+class NoteTest(CyscoreTest):
 
     def test_repr(self):
-        dummy = Note(1, [2, 3])
-        result = str(dummy)
-        correct = '1\t2\t3'
-        self.assertEqual(result, correct)
+        result = str(self.note_dummy)
+        self.assertEqual(result, self.note_correct)
 
 
 if __name__ == '__main__':

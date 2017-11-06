@@ -1,15 +1,11 @@
-import unittest
+from cyscore_test import CyscoreTest
 
-from cyscore.voice import Voice
 
-# TODO
-class VoiceTest(unittest.TestCase):
+class VoiceTest(CyscoreTest):
 
     def test_repr(self):
-        dummy = Voice('hello', [2, 3])
-        result = str(dummy)
-        correct = '1\t2\t3'
-        self.assertEqual(result, correct)
+        result = str(self.voice_dummy)
+        self.assertEqual(result, self.voice_correct)
 
 
 if __name__ == '__main__':
