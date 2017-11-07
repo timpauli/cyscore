@@ -1,8 +1,6 @@
 from random import sample
 
-from cyscore.note import Note
-from cyscore.score import Score
-from cyscore.voice import Voice
+from cyscore import Note, Score, Voice
 
 
 def gen(max_amp, prev_dur):
@@ -37,4 +35,4 @@ for i in range(n):
 
 voice = Voice('example', notes)
 score = Score([voice])
-score.render('examples/example.orc', 'examples/example')
+score.render('example.orc', 'example')
