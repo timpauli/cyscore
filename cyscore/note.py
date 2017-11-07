@@ -2,9 +2,11 @@ from typing import List
 
 
 class Note:
-    def __init__(self, distance: float, duration: float,
+    def __init__(self, delay: float, duration: float,
                  pfields: List[float]) -> None:
-        self.distance = distance
+        assert(delay >= 0)
+        assert(duration > 0)
+        self.delay = delay
         self.duration = duration
         self.pfields = pfields
 
