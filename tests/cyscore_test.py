@@ -1,8 +1,6 @@
 import unittest
 
-from cyscore.note import Note
-from cyscore.score import Score
-from cyscore.voice import Voice
+from cyscore import Note, Score, Voice
 
 
 class CyscoreTest(unittest.TestCase):
