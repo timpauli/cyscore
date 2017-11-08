@@ -3,7 +3,7 @@ from typing import List
 
 class Note:
     def __init__(self, delay: float, duration: float,
-                 pfields: List[float]) -> None:
+                 pfields: List) -> None:
         assert(delay >= 0)
         assert(duration > 0)
         self.delay = delay
