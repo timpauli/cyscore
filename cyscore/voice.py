@@ -16,7 +16,7 @@ class Voice:
 
     def __repr__(self) -> str:
         times = accumulate(map(lambda x: x.delay, self.notes))
-        block = self.__line(next(times), self.notes[0])
+        block = self.__line(0, self.notes[0])
         for n, time in zip(self.notes[1:], times):
             block += '\n'
             block += self.__line(time, n)
