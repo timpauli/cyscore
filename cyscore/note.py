@@ -16,3 +16,6 @@ class Note:
             line += '\t'
             line += str(p)
         return line
+
+    def stretch(self, factor):
+        return Note(self.delay * factor, self.duration * factor, self.pfields)
