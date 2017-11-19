@@ -2,7 +2,7 @@ import unittest
 
 from cyscore import Voice
 
-from cyscore_test import CyscoreTest
+from .cyscore_test import CyscoreTest
 
 
 class VoiceTest(CyscoreTest):
