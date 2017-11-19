@@ -19,6 +19,11 @@ class NoteTest(CyscoreTest):
         with self.assertRaises(AssertionError):
             Note(1, 0, [])
 
+    def test_stretch(self):
+        result = self.note_dummy.stretch(2)
+        self.assertEqual(result.duration, 2)
+        self.assertEqual(result.delay, 2)
+
 
 if __name__ == '__main__':
 
