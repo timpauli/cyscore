@@ -1,7 +1,8 @@
+# cyscore
+
 [![Build Status](https://travis-ci.org/inkeye/wav_to_video.svg?branch=master)](https://travis-ci.org/inkeye/wav_to_video)
 [![Coverage Status](https://coveralls.io/repos/github/inkeye/cyscore/badge.svg?branch=master)](https://coveralls.io/github/inkeye/cyscore?branch=master)
 
-# cyscore
 Score abstraction for [Csound](https://github.com/csound/csound) written in Python.
 
 ```
