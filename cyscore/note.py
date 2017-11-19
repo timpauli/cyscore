@@ -6,9 +6,21 @@ class Note:
                  pfields: List) -> None:
         assert(delay >= 0)
         assert(duration > 0)
-        self.delay = delay
-        self.duration = duration
-        self.pfields = pfields
+        self.__delay = delay
+        self.__duration = duration
+        self.__pfields = pfields
+
+    @property
+    def delay(self) -> float:
+        return self.__delay
+
+    @property
+    def duration(self) -> float:
+        return self.__duration
+
+    @property
+    def pfields(self) -> List:
+        return list(self.__pfields)
 
     def __repr__(self) -> str:
         line = str(self.duration)
@@ -17,5 +29,6 @@ class Note:
             line += str(p)
         return line
 
-    def stretch(self, factor):
-        return Note(self.delay * factor, self.duration * factor, self.pfields)
+    def stretch(self, factor: float):
+        return Note(self.delay * factor, self.duration * factor,
+                    self.pfields)

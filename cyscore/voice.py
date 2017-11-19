@@ -7,8 +7,16 @@ from .note import Note
 class Voice:
     def __init__(self, instr: str, notes: List[Note]) -> None:
         assert(len(notes) > 0)
-        self.instr = instr
-        self.notes = notes
+        self.__instr = instr
+        self.__notes = notes
+
+    @property
+    def instr(self) -> str:
+        return self.__instr
+
+    @property
+    def notes(self) -> List[Note]:
+        return list(self.__notes)
 
     def __line(self, time: float, note: Note) -> str:
         line = "i\t\"{0}\"\t{1}\t".format(self.instr, time)

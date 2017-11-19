@@ -7,7 +7,11 @@ from .voice import Voice
 class Score:
     def __init__(self, voices: List[Voice]) -> None:
         assert(len(voices) > 0)
-        self.voices = voices
+        self.__voices = voices
+
+    @property
+    def voices(self) -> List[Voice]:
+        return list(self.__voices)
 
     def __repr__(self) -> str:
         sco = str(self.voices[0])
@@ -23,7 +27,8 @@ class Score:
         return filename
 
     def render(self, orcname: str, fname: str,
-               sr: int = 48000, ksmps: int = 1) -> None:
+               sr: int = 48000, ksmps: int = 1) -> str:
+        sconame = self.to_file(fname)
         call(["csound",
               "--sample-rate=" + str(sr),
               "--control-rate=" + str(sr / ksmps),
@@ -33,4 +38,5 @@ class Score:
               "--format=24bit",
               "--nodisplays",
               orcname,
-             self.to_file(fname)])
+              sconame])
+        return sconame
