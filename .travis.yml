@@ -5,8 +5,8 @@ python:
 install:
   - pip3 install .
   - pip3 install pytest
-  - pip3 install coveralls
+  - pip3 install python-coveralls
 script:
-  - pytest
+  - pytest --cov cyscore
 after_success:
   - coveralls
