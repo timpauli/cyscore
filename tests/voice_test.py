@@ -1,3 +1,5 @@
+import unittest
+
 from cyscore import Voice
 
 from cyscore_test import CyscoreTest

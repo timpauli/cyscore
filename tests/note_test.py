@@ -1,3 +1,5 @@
+import unittest
+
 from cyscore import Note
 
 from cyscore_test import CyscoreTest
