@@ -18,6 +18,20 @@ class Voice:
     def notes(self) -> List[Note]:
         return list(self.__notes)
 
+    def __iter__(self):
+        return self.notes.__iter__()
+
+    def __getitem__(self, index):
+        return self.notes[index]
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            i = self.instr == other.instr
+            n = self.notes == other.notes
+            return i and n
+        else:
+            return self == other
+
     def __line(self, time: float, note: Note) -> str:
         line = "i\t\"{0}\"\t{1}\t".format(self.instr, time)
         return line + str(note)

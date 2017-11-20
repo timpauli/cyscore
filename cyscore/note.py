@@ -22,6 +22,15 @@ class Note:
     def pfields(self) -> List:
         return list(self.__pfields)
 
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            de = self.delay == other.delay
+            du = self.duration == other.duration
+            p = self.pfields == other.pfields
+            return de and du and p
+        else:
+            return self == other
+
     def __repr__(self) -> str:
         line = str(self.duration)
         for p in self.pfields:
@@ -31,5 +40,5 @@ class Note:
 
     def stretch(self, factor: float):
         assert(factor > 0)
-        return Note(self.delay * factor, self.duration * factor,
-                    self.pfields)
+        return self.__class__(self.delay * factor, self.duration * factor,
+                              self.pfields)
