@@ -28,7 +28,7 @@ class Voice:
         if isinstance(other, self.__class__):
             return self.__eq(other)
         else:
-            return self == other
+            False
 
     def __eq(self, other: 'Voice') -> bool:
         i = self.instr == other.instr
