@@ -1,9 +1,11 @@
-from typing import List
+from typing import List, Union
+
+Parameter = Union[Union[int, float], str]
 
 
 class Note:
     def __init__(self, delay: float, duration: float,
-                 pfields: List) -> None:
+                 pfields: List[Parameter]) -> None:
         assert(delay >= 0)
         assert(duration > 0)
         self.__delay = delay
@@ -19,17 +21,20 @@ class Note:
         return self.__duration
 
     @property
-    def pfields(self) -> List:
+    def pfields(self) -> List[Parameter]:
         return list(self.__pfields)
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         if isinstance(other, self.__class__):
-            de = self.delay == other.delay
-            du = self.duration == other.duration
-            p = self.pfields == other.pfields
-            return de and du and p
+            return self.__eq(other)
         else:
-            return self == other
+            return False
+
+    def __eq(self, other: 'Note') -> bool:
+        de = self.delay == other.delay
+        du = self.duration == other.duration
+        p = self.pfields == other.pfields
+        return de and du and p
 
     def __repr__(self) -> str:
         line = str(self.duration)
@@ -38,7 +43,7 @@ class Note:
             line += str(p)
         return line
 
-    def stretch(self, factor: float):
+    def stretch(self, factor: float) -> 'Note':
         assert(factor > 0)
-        return self.__class__(self.delay * factor, self.duration * factor,
-                              self.pfields)
+        return Note(self.delay * factor, self.duration * factor,
+                    self.pfields)
