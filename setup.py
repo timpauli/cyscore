@@ -11,4 +11,5 @@ setup(
     packages=['cyscore'],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
+    python_requires='>=3.5'
 )
