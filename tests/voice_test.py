@@ -24,6 +24,10 @@ class VoiceTest(CyscoreTest):
         result = self.voice_dummy[0]
         self.assertEqual(result, self.note_dummy)
 
+    def test_eq(self):
+        result = self.voice_dummy[0]
+        self.assertNotEqual(result, 0)
+
 
 if __name__ == '__main__':
 
