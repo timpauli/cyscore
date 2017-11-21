@@ -45,5 +45,5 @@ class Note:
 
     def stretch(self, factor: float) -> 'Note':
         assert(factor > 0)
-        return Note(self.delay * factor, self.duration * factor,
-                    self.pfields)
+        return type(self)(self.delay * factor, self.duration * factor,
+                          self.pfields)
