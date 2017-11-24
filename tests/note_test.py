@@ -24,6 +24,14 @@ class NoteTest(CyscoreTest):
         self.assertEqual(result.duration, 2)
         self.assertEqual(result.delay, 2)
 
+    def test_del(self):
+        result = self.note_dummy.change_del(2)
+        self.assertEqual(result.delay, 2)
+
+    def test_dur(self):
+        result = self.note_dummy.change_dur(2)
+        self.assertEqual(result.duration, 2)
+
     def test_eq(self):
         result = self.note_dummy
         self.assertNotEqual(result, 0)

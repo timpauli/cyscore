@@ -47,3 +47,13 @@ class Note:
         assert(factor > 0)
         return type(self)(self.delay * factor, self.duration * factor,
                           self.pfields)
+
+    def change_del(self, delay: float) -> 'Note':
+        assert(delay >= 0)
+        return type(self)(delay, self.duration,
+                          self.pfields)
+
+    def change_dur(self, duration: float) -> 'Note':
+        assert(duration > 0)
+        return type(self)(self.delay, duration,
+                          self.pfields)
