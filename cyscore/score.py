@@ -40,4 +40,4 @@ class Score:
               "--nodisplays",
               orcname,
               sconame])
-        return fname
+        return outname
