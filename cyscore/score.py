@@ -29,14 +29,15 @@ class Score:
     def render(self, orcname: str, fname: str,
                sr: int = 48000, ksmps: int = 1) -> str:
         sconame = self.to_file(fname)
+        outname = fname + ".wav"
         call(["csound",
               "--sample-rate=" + str(sr),
               "--control-rate=" + str(sr / ksmps),
               "--logfile=" + fname + ".log",
               "--format=wav",
-              "--output=" + fname + ".wav",
+              "--output=" + outname,
               "--format=24bit",
               "--nodisplays",
               orcname,
               sconame])
-        return sconame
+        return fname
