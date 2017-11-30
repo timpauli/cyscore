@@ -33,7 +33,7 @@ class Score:
         call(["csound",
               "--sample-rate=" + str(sr),
               "--control-rate=" + str(sr / ksmps),
-              "--logfile=" + fname + ".log",
+              "--logfile={0}.log".format(fname),
               "--format=wav",
               "--output=" + outname,
               "--format=24bit",
