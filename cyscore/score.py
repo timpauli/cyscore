@@ -26,7 +26,8 @@ class Score:
         return fname
 
     def render(self, orcname: str, sconame: str, outname: str,
-               sr: int=48000, ksmps: int=1, depth: str='24bit', logname: str="") -> str:
+               sr: int=48000, ksmps: int=1, depth: str='24bit',
+               logname: str="") -> str:
         sconame = self.to_file(sconame)
         args = ["csound",
                 "--sample-rate=" + str(sr),
@@ -38,5 +39,5 @@ class Score:
         if logname:
             args.append("--logfile=" + logname)
         args.extend([orcname, sconame])
-        sp.calls(args)
+        sp.run(args)
         return outname
