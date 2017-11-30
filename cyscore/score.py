@@ -1,4 +1,4 @@
-from subprocess import call
+import subprocess as sp
 from typing import List
 
 from .voice import Voice
@@ -21,23 +21,22 @@ class Score:
         return sco
 
     def to_file(self, fname: str) -> str:
-        filename = fname + '.sco'
-        with open(filename, "w") as f:
+        with open(fname, "w") as f:
             f.write(str(self))
-        return filename
+        return fname
 
-    def render(self, orcname: str, fname: str,
-               sr: int = 48000, ksmps: int = 1) -> str:
-        sconame = self.to_file(fname)
-        outname = fname + ".wav"
-        call(["csound",
-              "--sample-rate=" + str(sr),
-              "--control-rate=" + str(sr / ksmps),
-              "--logfile={0}.log".format(fname),
-              "--format=wav",
-              "--output=" + outname,
-              "--format=24bit",
-              "--nodisplays",
-              orcname,
-              sconame])
+    def render(self, orcname: str, sconame: str, outname: str,
+               sr: int=48000, ksmps: int=1, depth: str='24bit', logname: str="") -> str:
+        sconame = self.to_file(sconame)
+        args = ["csound",
+                "--sample-rate=" + str(sr),
+                "--control-rate=" + str(sr / ksmps),
+                "--output=" + outname,
+                "--format=wav",
+                "--format=" + depth,
+                "--nodisplays"]
+        if logname:
+            args.append("--logfile=" + logname)
+        args.extend([orcname, sconame])
+        sp.calls(args)
         return outname
