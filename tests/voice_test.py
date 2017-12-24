@@ -28,6 +28,15 @@ class VoiceTest(CyscoreTest):
         result = self.voice_dummy
         self.assertNotEqual(result, 0)
 
+    def test_duration(self):
+        result = self.voice_dummy.duration()
+        expected = self.note_dummy.delay * 2
+        self.assertEqual(result, expected)
+
+    def test_starttime(self):
+        result = self.voice_dummy.starttime
+        self.assertEqual(result, 0)
+
 
 if __name__ == '__main__':
 
