@@ -35,4 +35,4 @@ for i in range(n):
 
 voice = Voice('example', notes)
 score = Score([voice])
-score.render('example.orc', 'example')
+score.render('example.orc', 'example.sco', 'example.wav')
