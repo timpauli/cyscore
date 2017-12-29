@@ -51,7 +51,7 @@ class Voice:
     def __repr__(self) -> str:
         times = accumulate(map(lambda x: x.delay, self.notes))
         times = [time + self.starttime for time in times]
-        block = self.__line(0, self.notes[0])
+        block = self.__line(self.starttime, self.notes[0])
         for n, time in zip(self.notes[1:], times):
             block += '\n'
             block += self.__line(time, n)
