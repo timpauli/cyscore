@@ -26,7 +26,7 @@ class Score:
         return fname
 
     def render(self, orcname: str, sconame: str, outname: str,
-               sr: int=48000, ksmps: int=1, depth: str='24bit',
+               sr: int=48000, ksmps: int=1, depth: str='float',
                logname: str="") -> str:
         sconame = self.to_file(sconame)
         args = ["csound",
