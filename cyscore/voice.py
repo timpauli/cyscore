@@ -2,6 +2,7 @@ from itertools import accumulate
 from typing import Iterator, List
 
 from .note import Note
+from .utility import number_format, str_format
 
 
 class Voice:
@@ -45,7 +46,8 @@ class Voice:
         return i and n
 
     def __line(self, time: float, note: Note) -> str:
-        line = "i\t\"{0}\"\t{1}\t".format(self.instr, time)
+        line = "i\t{0}\t{1}\t".format(str_format(self.instr),
+                                      number_format(time))
         return line + str(note)
 
     def __repr__(self) -> str:

@@ -1,5 +1,7 @@
 from typing import List, Union
 
+from .utility import number_format, str_format
+
 Parameter = Union[Union[int, float], str]
 
 
@@ -37,10 +39,13 @@ class Note:
         return de and du and p
 
     def __repr__(self) -> str:
-        line = str(self.duration)
+        line = number_format(self.duration)
         for p in self.pfields:
             line += '\t'
-            line += str(p)
+            if isinstance(p, str):
+                line += str_format(p)
+            else:
+                line += number_format(p)
         return line
 
     def stretch(self, factor: float) -> 'Note':
