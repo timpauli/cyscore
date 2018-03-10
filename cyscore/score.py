@@ -13,22 +13,29 @@ class Score:
     def voices(self) -> List[Voice]:
         return list(self.__voices)
 
-    def __repr__(self) -> str:
-        sco = str(self.voices[0])
-        for v in self.voices[1:]:
+    def repr(self, mutefuncs) -> str:
+        sco = self.voices[0].repr(mutefuncs[0])
+        for v, m in zip(self.voices[1:], mutefuncs[1:]):
             sco += '\n'
-            sco += str(v)
+            sco += v.repr(m)
         return sco
 
-    def to_file(self, fname: str) -> str:
+    def __repr__(self) -> str:
+        return self.repr([lambda x: True] * len(self.voices))
+
+    def to_file(self, fname: str, mutefuncs=None) -> str:
+        if mutefuncs is None:
+            mutefuncs = [lambda x: True] * len(self.voices)
         with open(fname, "w") as f:
-            f.write(str(self))
+            f.write(self.repr(mutefuncs))
         return fname
 
     def render(self, orcname: str, sconame: str, outname: str,
                sr: int=48000, ksmps: int=1, depth: str='float',
-               logname: str="") -> str:
-        sconame = self.to_file(sconame)
+               logname: str="", mutefuncs=None) -> str:
+        if mutefuncs is None:
+            mutefuncs = [lambda x: True] * len(self.voices)
+        sconame = self.to_file(sconame, mutefuncs)
         args = ["csound",
                 "--sample-rate=" + str(sr),
                 "--control-rate=" + str(sr / ksmps),

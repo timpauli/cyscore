@@ -45,16 +45,23 @@ class Voice:
         n = self.notes == other.notes
         return i and n
 
-    def __line(self, time: float, note: Note) -> str:
+    def __line(self, time: float, note: Note, mutefunc) -> str:
         line = "i\t{0}\t{1}\t".format(str_format(self.instr),
                                       number_format(time))
-        return line + str(note)
+        if mutefunc(note):
+            result = line + str(note)
+        else:
+            result = ''
+        return result
 
-    def __repr__(self) -> str:
+    def repr(self, mutefunc) -> str:
         times = accumulate(map(lambda x: x.delay, self.notes))
         times = [time + self.starttime for time in times]
-        block = self.__line(self.starttime, self.notes[0])
+        block = self.__line(self.starttime, self.notes[0], mutefunc)
         for n, time in zip(self.notes[1:], times):
             block += '\n'
-            block += self.__line(time, n)
+            block += self.__line(time, n, mutefunc)
         return block
+
+    def __repr__(self) -> str:
+        return self.repr(lambda x: True)
