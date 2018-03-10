@@ -32,6 +32,10 @@ class NoteTest(CyscoreTest):
         result = self.note_dummy.change_dur(2)
         self.assertEqual(result.duration, 2)
 
+    def test_pfield(self):
+        result = self.note_dummy.change_pfield(0, 3)
+        self.assertEqual(result.pfields[0], 3)
+
     def test_eq(self):
         result = self.note_dummy
         self.assertNotEqual(result, 0)

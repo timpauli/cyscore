@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='cyscore',
-    version='0.2.8',
+    version='0.2.9',
     license='GPL',
     description='score abstraction for csound written in python',
     author='Tim Pauli',

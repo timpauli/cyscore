@@ -62,3 +62,9 @@ class Note:
         assert(duration > 0)
         return type(self)(self.delay, duration,
                           self.pfields)
+
+    def change_pfield(self, index: int, value: Parameter) -> 'Note':
+        newfields = self.pfields
+        newfields[index] = value
+        return type(self)(self.delay, self.duration,
+                          newfields)
